@@ -17,7 +17,7 @@ SideScroller.Game.prototype = {
     this.blockedLayer = this.map.createLayer('blockedLayer');
 
     //collision on blockedLayer
-    this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
+    this.map.setCollisionBetween(1, 5000, true, 'blockedLayer');
 
     //resizes the game world to match the layer dimensions
     this.backgroundlayer.resizeWorld();
@@ -110,6 +110,8 @@ SideScroller.Game.prototype = {
     //if hits on the right side, die
     if(player.body.blocked.right) {
 
+      console.log(player.body.blocked);
+
       //set to dead (this doesn't affect rendering)
       this.player.alive = false;
 
@@ -200,5 +202,6 @@ SideScroller.Game.prototype = {
   render: function()
     {
         this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");   
+        this.game.debug.bodyInfo(this.player, 0, 80);   
     }
 };
